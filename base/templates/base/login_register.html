@@ -1,0 +1,46 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-[60vh]">
+    <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 w-full max-w-md">
+        
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-900">{{ title }}</h2>
+            <p class="text-gray-500 text-sm mt-2">Welcome to Study Buddy Platform</p>
+        </div>
+
+        <form method="POST" class="space-y-4">
+            {% csrf_token %}
+            
+            <!-- Loop through form fields to apply Tailwind styles -->
+            {% for field in form %}
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ field.label }}</label>
+                <!-- This renders the input with specific classes -->
+                <input 
+                    type="{{ field.field.widget.input_type }}" 
+                    name="{{ field.name }}" 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"
+                    required
+                >
+                {% if field.help_text %}
+                <p class="text-xs text-gray-400 mt-1">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-indigo-200 transition-all transform hover:-translate-y-0.5">
+                {{ title }}
+            </button>
+        </form>
+
+        <div class="mt-6 text-center text-sm">
+            {% if title == 'Login' %}
+                <p class="text-gray-600">Don't have an account? <a href="{% url 'register' %}" class="text-indigo-600 font-bold hover:underline">Sign Up</a></p>
+            {% else %}
+                <p class="text-gray-600">Already have an account? <a href="{% url 'login' %}" class="text-indigo-600 font-bold hover:underline">Login</a></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

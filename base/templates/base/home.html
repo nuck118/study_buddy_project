@@ -1,0 +1,95 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    
+    <!-- LEFT COLUMN: SUBJECTS (Takes up 2 spaces) -->
+    <div class="lg:col-span-2 space-y-6">
+        <div class="flex justify-between items-end">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">Your Learning Paths</h1>
+                <p class="text-gray-500 mt-1">Select a subject to continue your progress.</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {% for subject in subjects %}
+            <!-- Subject Card -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div class="h-3 bg-indigo-500 group-hover:bg-purple-500 transition-colors"></div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <div class="bg-indigo-50 text-indigo-600 w-12 h-12 rounded-lg flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">{{ subject.name }}</h3>
+                    <p class="text-gray-500 text-sm mb-6 line-clamp-2">{{ subject.description }}</p>
+
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'subject' subject.id %}" class="block w-full text-center bg-gray-50 hover:bg-indigo-600 hover:text-white text-gray-700 font-semibold py-2.5 rounded-lg border border-gray-200 hover:border-indigo-600 transition-all">
+                            Continue Learning
+                        </a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="block w-full text-center bg-gray-100 text-gray-400 font-semibold py-2.5 rounded-lg cursor-not-allowed">
+                            Login to Access
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-2 text-center py-10">
+                <p class="text-gray-500">No subjects found. Ask admin to add some!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- RIGHT COLUMN: LEADERBOARD (Takes up 1 space) -->
+    <div class="lg:col-span-1">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sticky top-24">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-bold text-gray-900">🏆 Top Learners</h2>
+                <span class="text-xs font-semibold bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full uppercase tracking-wide">This Week</span>
+            </div>
+
+            <div class="space-y-4">
+                {% for profile in leaderboard %}
+                <div class="flex items-center justify-between p-3 rounded-lg {% if forloop.counter == 1 %}bg-yellow-50 border border-yellow-200{% else %}hover:bg-gray-50{% endif %} transition">
+                    <div class="flex items-center gap-3">
+                        <!-- Rank Badge -->
+                        <div class="font-bold text-gray-400 w-6 text-center">
+                            {% if forloop.counter == 1 %}🥇{% elif forloop.counter == 2 %}🥈{% elif forloop.counter == 3 %}🥉{% else %}{{ forloop.counter }}{% endif %}
+                        </div>
+                        <!-- Name -->
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">{{ profile.user.username }}</p>
+                            <p class="text-xs text-gray-400">Student</p>
+                        </div>
+                    </div>
+                    <div class="font-mono font-bold text-indigo-600 text-sm">
+                        {{ profile.total_score }} XP
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-gray-500 text-sm">No students yet.</p>
+                {% endfor %}
+            </div>
+
+            <!-- Gamification Motivation -->
+            <div class="mt-8 p-4 bg-indigo-900 rounded-xl text-center">
+                <p class="text-indigo-200 text-xs uppercase font-bold mb-1">Your Status</p>
+                {% if request.user.is_authenticated %}
+                    <div class="text-2xl font-bold text-white mb-1">{{ request.user.profile.total_score }} XP</div>
+                    <p class="text-indigo-300 text-xs">Keep completing goals to climb!</p>
+                {% else %}
+                    <p class="text-indigo-300 text-sm">Login to see your score!</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

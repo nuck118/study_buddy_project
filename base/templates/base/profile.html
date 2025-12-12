@@ -1,0 +1,96 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto">
+    
+    <h1 class="text-3xl font-bold text-gray-900 mb-8">
+        <i class="fa-solid fa-id-card text-indigo-600 mr-2"></i>Account Settings
+    </h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- LEFT COLUMN: PREVIEW CARD -->
+        <div class="md:col-span-1">
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 text-center sticky top-24">
+                
+                <!-- Profile Picture Display -->
+                <div class="relative w-32 h-32 mx-auto mb-4">
+                    {% if profile.profile_pic %}
+                        <img src="{{ profile.profile_pic.url }}" class="w-full h-full rounded-full object-cover border-4 border-indigo-100 shadow-sm">
+                    {% else %}
+                        <!-- Fallback Initials -->
+                        <div class="w-full h-full rounded-full bg-indigo-600 flex items-center justify-center text-4xl font-bold text-white border-4 border-indigo-100 shadow-sm">
+                            {{ user.username|slice:":1"|upper }}
+                        </div>
+                    {% endif %}
+                    
+                    <!-- XP Badge -->
+                    <div class="absolute bottom-0 right-0 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full border-2 border-white shadow-sm">
+                        {{ profile.total_score }} XP
+                    </div>
+                </div>
+
+                <h2 class="text-xl font-bold text-gray-900">{{ user.username }}</h2>
+                <p class="text-gray-500 text-sm mb-4">{{ user.email }}</p>
+
+                <div class="bg-gray-50 rounded-lg p-3 text-left">
+                    <p class="text-xs font-bold text-gray-400 uppercase mb-1">About Me</p>
+                    <p class="text-gray-600 text-sm italic">
+                        {% if profile.bio %}
+                            "{{ profile.bio }}"
+                        {% else %}
+                            No bio added yet.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN: EDIT FORM -->
+        <div class="md:col-span-2">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                <h3 class="text-lg font-bold text-gray-800 mb-6 border-b pb-2">Edit Profile</h3>
+
+                <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                    {% csrf_token %}
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Username</label>
+                            <input type="text" name="username" value="{{ user.username }}" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Email Address</label>
+                            <input type="email" name="email" value="{{ user.email }}" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Bio / Description</label>
+                        <textarea name="bio" rows="4" placeholder="Tell us about your learning goals..." class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none">{% if profile.bio %}{{ profile.bio }}{% endif %}</textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Change Profile Picture</label>
+                        <div class="p-4 border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 text-center hover:bg-indigo-50 hover:border-indigo-300 transition cursor-pointer relative">
+                            <input type="file" name="profile_pic" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                            <div class="text-gray-500">
+                                <i class="fa-solid fa-camera text-2xl mb-2 text-indigo-400"></i>
+                                <p class="text-sm font-medium">Click to upload new photo</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end pt-4">
+                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3 rounded-xl shadow-lg shadow-indigo-200 transition-transform transform hover:-translate-y-0.5">
+                            Save Changes
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
