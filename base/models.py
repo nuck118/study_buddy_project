@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import re
+import uuid 
 
 # ... Keep Subject model as is ...
 
@@ -102,3 +103,23 @@ class JournalEntry(models.Model):
 
     def __str__(self):
         return f"{self.title} ({self.date})"
+class Certificate(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    issued_date = models.DateField(auto_now_add=True)
+    image = models.ImageField(upload_to='certificates/')
+
+    def __str__(self):
+        return f"Certificate: {self.user.username} - {self.subject.name}"
+class PracticalChallenge(models.Model):
+    goal = models.OneToOneField(Goal, on_delete=models.CASCADE) # One challenge per goal
+    instruction = models.TextField() # e.g., "Create an h1 tag with 'Hello'"
+    starter_code = models.TextField(default="<h1></h1>") # Initial code in the box
+    hint = models.TextField(blank=True)
+    
+    # Validation: We will check if the user's code contains this string
+    validation_text = models.CharField(max_length=100) # e.g., "color: blue"
+    
+    def __str__(self):
+        return f"Challenge: {self.goal.description}"
