@@ -1,0 +1,99 @@
+PROPRIETARY SOFTWARE LICENSE AND CONFIDENTIALITY AGREEMENT
+
+COPYRIGHT (C) 2026 GOLDEN KALALA. ALL RIGHTS RESERVED.
+
+This Proprietary Software License Agreement ("Agreement") is a legal agreement 
+between the end-user ("Viewer") and Golden Kalala ("Licensor"), the exclusive 
+owner of the "Study Buddy" software platform.
+
+1. OWNERSHIP AND INTELLECTUAL PROPERTY
+The software, source code, database schemas, user interface designs, algorithms, 
+and documentation (collectively, the "Software") are the exclusive property of 
+Golden Kalala. The Software is protected by international copyright laws, 
+treaties, and the Berne Convention for the Protection of Literary and 
+Artistic Works.
+
+2. NO LICENSE GRANTED
+This repository is provided for **PORTFOLIO VIEWING PURPOSES ONLY**. 
+No license, express or implied, is granted to:
+   a) Copy, reproduce, or replicate the Software in whole or in part;
+   b) Modify, adapt, translate, or create derivative works based on the Software;
+   c) Distribute, sublicense, lease, rent, or loan the Software to any third party;
+   d) Reverse engineer, decompile, disassemble, or attempt to derive the source code;
+   e) Use the Software for any commercial or personal purpose other than evaluating 
+      the technical skills of the Licensor.
+
+3. FILE MANIFEST AND COVERAGE
+This proprietary protection explicitly covers, but is not limited to, the following 
+files and directories contained within this project structure:
+
+   ROOT CONFIGURATION:
+   - manage.py
+   - requirements.txt
+   - Procfile
+   - LICENSE
+
+   PROJECT CONFIGURATION (studybuddy/):
+   - studybuddy/__init__.py
+   - studybuddy/settings.py
+   - studybuddy/urls.py
+   - studybuddy/wsgi.py
+   - studybuddy/asgi.py
+
+   APPLICATION LOGIC (base/):
+   - base/__init__.py
+   - base/admin.py          (Admin Panel Logic)
+   - base/apps.py           (App Configuration)
+   - base/models.py         (Database Schema & ORM)
+   - base/views.py          (Business Logic & Controllers)
+   - base/urls.py           (Routing & Endpoints)
+   - base/utils.py          (Certificate Generation Logic)
+   - base/tests.py
+
+   FRONTEND TEMPLATES (base/templates/base/):
+   - main.html              (Master Layout & Tailwind Config)
+   - landing.html           (Marketing Landing Page)
+   - home.html              (Dashboard & Leaderboard)
+   - subject.html           (Course Content, Video Player, PDF Viewer)
+   - login_register.html    (Authentication Forms)
+   - journal.html           (Timeline & Activity Tracking)
+   - journal_edit.html      (Entry Management)
+   - profile.html           (User Settings & Bio)
+   - certificate.html       (Award Generation & Social Sharing)
+   - practical_lab.html     (Interactive Coding Environment)
+
+   ASSETS & MIGRATIONS:
+   - All migration files located in base/migrations/
+   - All static assets (CSS/JS) located in static/
+   - All media assets generated in media/
+
+Any file not explicitly listed above but contained within this repository directory 
+structure is automatically covered by this Agreement.
+
+4. CONFIDENTIALITY
+The source code contained herein is considered "Confidential Information." 
+Accessing this repository does not grant rights to disclose, publish, or 
+use any part of the code for competitive analysis or development of a 
+competing product.
+
+5. VIOLATIONS AND ENFORCEMENT
+Any unauthorized use, replication, or distribution of this Software represents 
+a violation of copyright law. The Licensor reserves the right to pursue all 
+legal remedies available under applicable laws, including but not limited to 
+injunctive relief and monetary damages.
+
+6. GOVERNING LAW
+This Agreement shall be governed by and construed in accordance with the laws 
+of the jurisdiction in which the Licensor resides, alongside applicable 
+International Copyright Treaties.
+
+-------------------------------------------------------------------------
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+THE LICENSOR DISCLAIMS ALL WARRANTIES, INCLUDING MERCHANTABILITY AND 
+FITNESS FOR A PARTICULAR PURPOSE.
+-------------------------------------------------------------------------
+
+Securely Signed,
+Golden Kalala
+Copyright Holder & Lead Developer
+2026
