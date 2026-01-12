@@ -1,0 +1,78 @@
+DEKLARACJA WŁASNOŚCI INTELEKTUALNEJ I SPECYFIKACJA FUNKCJONALNA
+
+PROJEKT: Study Buddy
+WŁAŚCICIEL (TWÓRCA): Golden Kalala
+DATA: 2026
+JURYSDYKCJA: Rzeczpospolita Polska (Poland)
+
+1. PODSTAWA PRAWNA I OŚWIADCZENIE O WŁASNOŚCI
+Niniejszy dokument stanowi formalne oświadczenie woli, w którym Golden Kalala 
+(dalej "Twórca") zastrzega sobie pełne i wyłączne prawa majątkowe oraz osobiste 
+do oprogramowania "Study Buddy".
+
+Oprogramowanie to stanowi utwór w rozumieniu Art. 1 ust. 1 oraz Art. 74 ust. 1 
+Ustawy z dnia 4 lutego 1994 r. o prawie autorskim i prawach pokrewnych 
+(Dz.U. 1994 nr 24 poz. 83 z późn. zm.). Kod źródłowy, architektura systemu, 
+algorytmy oraz interfejs graficzny są chronione jako przejaw działalności twórczej 
+o indywidualnym charakterze.
+
+Ponadto, specyficzne rozwiązania techniczne opisane poniżej stanowią Tajemnicę 
+Przedsiębiorstwa w rozumieniu Art. 11 ust. 2 Ustawy z dnia 16 kwietnia 1993 r. 
+o zwalczaniu nieuczciwej konkurencji.
+
+2. ZASTRZEŻONE ROZWIĄZANIA FUNKCJONALNE
+Twórca rości sobie wyłączne prawa do następujących unikalnych implementacji 
+technicznych i logicznych:
+
+   A. SILNIK GRYWALIZACJI EDUKACYJNEJ (Gamification Engine)
+   --------------------------------------------------------
+   System backendowy łączący modele `Goal` (Cele) oraz `UserProgress` (Postęp), 
+   wykorzystujący unikalną logikę walidacji zapobiegającą duplikacji punktacji (XP).
+   - Zastrzeżenie: Algorytm automatycznego rankingu ("Leaderboard") oparty na 
+     agregacji punktów w czasie rzeczywistym.
+   - Zastrzeżenie: Mechanizm dynamicznego odblokowywania sekcji kursu na podstawie 
+     stanów logicznych bazy danych PostgreSQL.
+
+   B. INTERAKTYWNE LABORATORIUM KODOWANIA (Code Lab)
+   --------------------------------------------------------
+   Autorskie środowisko uruchomieniowe działające w przeglądarce, służące do 
+   nauki programowania bez użycia zewnętrznych kompilatorów.
+   - Zastrzeżenie: Struktura modelu `PracticalChallenge` zawierająca instrukcje, 
+     kod startowy i ukrytą logikę walidacji tekstu.
+   - Zastrzeżenie: System "Real-time Preview" wykorzystujący izolowane ramki (iframe) 
+     do bezpiecznego renderowania kodu użytkownika.
+   - Zastrzeżenie: Algorytmy weryfikacji składni dla języków HTML, CSS, JavaScript i SQL.
+
+   C. ADAPTACYJNY DZIENNIK CHRONOLOGICZNY (Journal Timeline)
+   --------------------------------------------------------
+   System zarządzania czasem (Time-Management) wykorzystujący wizualizację wertykalną.
+   - Zastrzeżenie: Metoda grupowania wpisów według daty przy jednoczesnym sortowaniu 
+     czasowym (`{% regroup %}` logic) w frameworku Django.
+   - Zastrzeżenie: Algorytm "Realtime Progress" obliczający procentowe wykonanie zadania 
+     w oparciu o różnicę czasu serwera i zdefiniowanych ram czasowych (Start/End).
+   - Zastrzeżenie: Wizualny system stanów (Oczekujące/W Trakcie/Zakończone).
+
+   D. SYSTEM DYSTRYBUCJI TREŚCI I CERTYFIKACJI
+   --------------------------------------------------------
+   - Zastrzeżenie: Mechanizm bezpiecznego osadzania treści (Secure Embedding Wrapper) 
+     dla plików PDF (Google Viewer Encapsulation) i wideo, omijający blokady `X-Frame-Options`.
+   - Zastrzeżenie: Generator Certyfikatów wykorzystujący bibliotekę Pillow do 
+     programowego tworzenia plików graficznych z unikalnymi identyfikatorami UUID.
+
+3. ZAKAZ KOPIOWANIA I INŻYNIERII WSTECZNEJ
+Zabrania się kopiowania, modyfikowania, dekompilacji (reverse engineering) oraz 
+wykorzystywania kodu źródłowego lub jego fragmentów do tworzenia produktów 
+konkurencyjnych bez pisemnej zgody Twórcy.
+
+Naruszenie powyższych warunków skutkować będzie odpowiedzialnością cywilną 
+i karną, zgodnie z przepisami obowiązującymi na terenie Rzeczypospolitej Polskiej 
+oraz Unii Europejskiej.
+
+4. KLAUZULA POUFNOŚCI
+Dostęp do repozytorium kodu ma charakter poglądowy (Portfolio) i nie stanowi 
+przeniesienia praw autorskich ani udzielenia licencji na użytkowanie komercyjne.
+
+Podpisano,
+Golden Kalala
+Główny Architekt i Właściciel Praw Autorskich
+2026
