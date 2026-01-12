@@ -1,0 +1,83 @@
+PROPRIETARY FEATURE SPECIFICATION AND INTELLECTUAL PROPERTY DECLARATION
+
+PROJECT: Study Buddy
+OWNER: Golden Kalala
+DATE: 2026
+STATUS: PROPRIETARY & CONFIDENTIAL
+
+1. DECLARATION OF OWNERSHIP
+Golden Kalala (the "Inventor") hereby asserts exclusive ownership over the novel 
+methods, logic flows, system architectures, and feature implementations described 
+herein (collectively, the "Invention"). The specific combination of gamified 
+learning management, real-time activity tracking, and interactive code verification 
+constitutes a proprietary system protected under International Intellectual Property laws.
+
+2. PROTECTED FEATURE CLAIMS
+The following features are claimed as exclusive Intellectual Property of the Inventor. 
+Any replication of the logic, visual layout, or backend mechanics of these features 
+is strictly prohibited.
+
+   A. THE GAMIFIED LEARNING PROGRESSION ENGINE
+   --------------------------------------------------------
+   A proprietary system linking 'Goals' to 'UserProgress' via a specialized backend 
+   logic that prevents duplicate scoring and ensures linear progression.
+   - Claim 1: The method of checking `UserProgress` existence prior to awarding XP.
+   - Claim 2: The automated leaderboard ranking algorithm based on accumulated XP (`total_score`).
+   - Claim 3: The dynamic unlocking of course sections based on goal completion states.
+
+   B. INTERACTIVE BROWSER-BASED CODE LAB
+   --------------------------------------------------------
+   A novel implementation of a coding environment that validates user input against 
+   server-side logic without external compilers.
+   - Claim 1: The 'PracticalChallenge' model structure containing instruction, 
+     starter code, and hidden validation text.
+   - Claim 2: The real-time preview mechanism injecting user HTML/CSS/JS into a 
+     sandboxed iframe.
+   - Claim 3: The text-based validation algorithm used to verify code correctness 
+     for HTML, CSS, JavaScript, and SQL syntax.
+
+   C. ADAPTIVE CHRONOLOGICAL JOURNAL SYSTEM
+   --------------------------------------------------------
+   A productivity tracking system featuring a "Timeline" visualization with 
+   real-time status updates.
+   - Claim 1: The continuous vertical timeline interface grouping entries by Date 
+     headers (`{% regroup %}` logic) while maintaining Time sorting.
+   - Claim 2: The JavaScript-based "Realtime Progress Algorithm" that calculates 
+     percentage completion based on current server time versus defined Start/End timestamps.
+   - Claim 3: The visual state engine that automatically transitions UI elements 
+     from "Scheduled" (Gray) to "In Progress" (Pulsing Indigo) to "Completed" (Green).
+
+   D. SECURE CONTENT DELIVERY & PROCTORING WRAPPERS
+   --------------------------------------------------------
+   Methods for delivering third-party educational content within a secure, 
+   distraction-free modal environment.
+   - Claim 1: The `getYouTubeEmbed` regex algorithm that sanitizes and secures 
+     video links, forcing strict origin policies to prevent errors.
+   - Claim 2: The PDF Enclosure method using Google Viewer encapsulation to bypass 
+     `X-Frame-Options` security blocks, allowing external PDFs to render internally.
+
+   E. DYNAMIC CERTIFICATION GENERATION ENGINE
+   --------------------------------------------------------
+   An automated system for verifying comprehensive course mastery and generating 
+   cryptographically unique proofs of completion.
+   - Claim 1: The `check_course_completion` logic that validates total goals versus 
+     completed user goals before triggering issuance.
+   - Claim 2: The programmatic image generation method (using Pillow) that 
+     dynamically renders User Name, Subject, and Date onto a template canvas.
+   - Claim 3: The assignment of Unique Identifiers (UUIDs) to certificates for 
+     verification purposes.
+
+3. VISUAL TRADE DRESS
+The specific visual arrangement, color palette (Indigo/Gray/White "Enterprise Fun"), 
+and UX patterns (Hover-lift cards, Modal interactions, Split-screen labs) constitute 
+the unique "Trade Dress" of the application and may not be imitated to create 
+consumer confusion.
+
+4. NON-COMPETE NOTICE
+Access to the source code of Study Buddy does not grant the viewer rights to build 
+a competing Learning Management System (LMS) utilizing these specific feature 
+implementations or database structures.
+
+Signed and Sealed,
+Golden Kalala
+2026
