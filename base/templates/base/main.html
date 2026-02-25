@@ -10,10 +10,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome (For Icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // This helps if you use AJAX/Fetch calls
+        const originalFetch = window.fetch;
+         window.fetch = (url, options = {}) => {
+         options.headers = {
+             ...options.headers,
+            'ngrok-skip-browser-warning': 'true'
+         };
+        return originalFetch(url, options);
+     };
+    </script>
     
     
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        html, body {
+        overflow-x: hidden;
+        position: relative;
+        width: 100%;
+    }
+    
+    /* Makes all images and videos stay inside their boxes */
+    img, iframe, video {
+        max-width: 100%;
+        height: auto;
+    }
     </style>
 </head>
 <body class="text-gray-800">

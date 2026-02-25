@@ -1,31 +1,30 @@
 {% extends 'base/main.html' %}
-
+{% load custom_filters %}
 {% block content %}
 
 <!-- --- JAVASCRIPT LOGIC --- -->
 <script>
     // 1. HELPER: Extract YouTube ID & Construct Safe Embed URL
     function getYouTubeEmbed(url) {
-        let videoId = '';
-        
-        // Extract ID from various YouTube URL formats
-        if (url.includes('v=')) {
-            videoId = url.split('v=')[1];
-            const ampersandPosition = videoId.indexOf('&');
-            if (ampersandPosition !== -1) {
-                videoId = videoId.substring(0, ampersandPosition);
-            }
-        } else if (url.includes('youtu.be/')) {
-            videoId = url.split('youtu.be/')[1];
-        }
+    let videoId = '';
+    
+    // 1. Better ID Extraction (Handles Shorts, standard, and mobile links)
+    const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
+    const match = url.match(regex);
+    videoId = (match && match[1]) ? match[1] : null;
 
-        // Construct Embed URL with 'origin' to fix Localhost/Error 153
-        if (videoId) {
-            const origin = window.location.origin; // Gets http://127.0.0.1:8000
-            return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&origin=${origin}`;
-        }
-        return url;
+    if (videoId) {
+        // 2. Fix Origin for Ngrok
+        // We ensure there is no trailing slash and it's properly encoded
+        const origin = window.location.origin.replace(/\/$/, ""); 
+        
+        // 3. Construct the secure embed URL
+        // Added 'enablejsapi=1' which often helps with cross-domain (ngrok) playback
+        return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&origin=${encodeURIComponent(origin)}&enablejsapi=1`;
     }
+    
+    return url;
+}
 
     // 2. CONTENT MODAL (Video & PDF)
     function openContentModal(rawUrl, type, title) {
@@ -106,8 +105,8 @@
             <div class="divide-y divide-gray-100">
                 {% for material in materials %}
                 <!-- Pass RAW link to JS function -->
-                <button onclick="openContentModal('{{ material.link }}', '{{ material.content_type }}', '{{ material.title }}')" 
-                        class="w-full text-left block p-4 hover:bg-indigo-50 transition group">
+                <button onclick="openContentModal('{{ material.link|youtube_embed }}', '{{ material.content_type }}', '{{ material.title }}')" 
+                    class="w-full text-left block p-4 hover:bg-indigo-50 transition group">
                     <div class="flex items-start gap-3">
                         <div class="mt-1">
                             {% if material.content_type == 'video' %}
