@@ -96,8 +96,7 @@ WSGI_APPLICATION = 'studybuddy.wsgi.application'
 }'''
 DATABASES = {
     'default': dj_database_url.config(
-        # This points to your local file if Render's DATABASE_URL isn't found
-        default='sqlite:///db.sqlite3', 
+        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
         conn_max_age=600
     )
 }
