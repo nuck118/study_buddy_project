@@ -23,25 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-q@z4w6=y4b=vu7bzcj6czj6b%=*^^=at6@u(-6o2*ig5*efj7$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
 # This tells Django to trust the ngrok tunnel
 ALLOWED_HOSTS = [
-    '*',
-    'localhost',
-    '127.0.0.1',
-    'studybuddy.ddns.net',
-    'give-eagles-involvement-compared.trycloudflare.com']
-CSRF_TRUSTED_ORIGINS = [
-    'https://nominalistic-zona-chromatophoric.ngrok-free.dev',
-    'https://studybuddy.ddns.net',
-    'https://*.trycloudflare.com'
-]
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-MIDDLEWARE = [
-    # ... other middlewares ...
-    'base.middleware.NgrokSkipWarningMiddleware',
-]
+    '*']
+if not DEBUG:
+    # This helps Django handle the HTTPS provided by Render
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+
 
 # Application definition
 
@@ -56,6 +47,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -88,7 +81,7 @@ WSGI_APPLICATION = 'studybuddy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'study_buddy',     # The name you gave in pgAdmin
@@ -97,6 +90,13 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
     }
+}'''
+DATABASES = {
+    'default': dj_database_url.config(
+        # This points to your local file if Render's DATABASE_URL isn't found
+        default='sqlite:///db.sqlite3', 
+        conn_max_age=600
+    )
 }
 
 
@@ -140,3 +140,6 @@ MEDIA_URL = '/media/'
 
 # Path where media is stored
 MEDIA_ROOT = BASE_DIR / 'media'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
