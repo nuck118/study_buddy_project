@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Replace TEAMID.* with your Team ID if needed for keychain groups -->
+    <key>com.apple.developer.associated-domains</key>
+    <array>
+        <!-- Example for universal links (if you enable): applinks:goldenkalala.com -->
+        <!-- <string>applinks:goldenkalala.com</string> -->
+    </array>
+
+    <key>keychain-access-groups</key>
+    <array>
+        <!-- For apps signed with your Team ID, use: TEAMID.com.goldenkalala.studybuddy -->
+        <string>$(AppIdentifierPrefix)com.goldenkalala.studybuddy</string>
+    </array>
+
+    <!-- If you need iCloud, push, or other capabilities add them here. -->
+</dict>
+</plist>

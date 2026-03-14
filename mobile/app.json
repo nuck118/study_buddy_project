@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "StudyBuddy Mobile",
+    "slug": "studybuddy-mobile",
+    "sdkVersion": "49.0.0",
+    "ios": {
+      "bundleIdentifier": "com.goldenkalala.studybuddy"
+    },
+    "android": {
+      "package": "com.goldenkalala.studybuddy"
+    }
+  }
+}

@@ -6,6 +6,7 @@ from django.conf.urls.static import static # <--- New
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('base.urls')),
+    path('api/', include('base.api.urls')),
 ]
 
 # This allows images to show up while you are coding (Debug mode)
