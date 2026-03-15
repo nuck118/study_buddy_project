@@ -35,7 +35,8 @@ fi
 cd "$MOBILE_DIR"
 
 echo "Installing JS dependencies..."
-npm install
+# Use expo install --fix to ensure dependencies align with the SDK version
+npx expo install --fix
 
 echo "Running expo prebuild..."
 npx expo prebuild --clean

@@ -27,14 +27,14 @@ class Material(models.Model):
         # 1. Handle YouTube
         if "youtube.com" in self.link or "youtu.be" in self.link:
             # Regex to grab the 11-char ID
-            import re
             regex = r'(?:v=|\/)([0-9A-Za-z_-]{11}).*'
             match = re.search(regex, self.link)
             
             if match:
                 video_id = match.group(1)
-                # IMPORTANT: We add '?rel=0' (no recommended videos) and 'origin' (fixes localhost error)
-                return f"https://www.youtube.com/embed/{video_id}?rel=0&modestbranding=1&origin=http://127.0.0.1:8000"
+                # IMPORTANT: We add '?rel=0' (no recommended videos).
+                # Removed hardcoded origin to allow prod deployment and mobile access.
+                return f"https://www.youtube.com/embed/{video_id}?rel=0&modestbranding=1"
         
         # 2. Handle Google Drive / Docs (for PDFs)
         if "drive.google.com" in self.link and "/view" in self.link:

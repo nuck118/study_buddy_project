@@ -103,8 +103,8 @@ def logout_user(request):
     logout(request)
     return redirect('login')
 @login_required(login_url='login')
-@login_required(login_url='login')
 def mark_complete(request, subject_id, goal_id):
+    new_cert = None
     if request.method == 'POST':
         goal = Goal.objects.get(id=goal_id)
         
