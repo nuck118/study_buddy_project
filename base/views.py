@@ -122,7 +122,8 @@ def mark_complete(request, subject_id, goal_id):
             profile.save()
 
             new_cert = check_course_completion(request.user, goal.subject)
-        if new_cert:
+        
+        if new_cert: # if a new certificate was created, redirect to the certificate page
             return redirect('certificate', pk=new_cert.id)
             
     return redirect('subject', pk=subject_id)

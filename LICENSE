@@ -49,6 +49,14 @@ files and directories contained within this project structure:
    - base/urls.py           (Routing & Endpoints)
    - base/utils.py          (Certificate Generation Logic)
    - base/tests.py
+   - base/middleware.py     (Custom Middleware)
+   - base/data_population_script.py (Data Seeding Script)
+
+   API LOGIC (base/api/):
+   - base/api/__init__.py
+   - base/api/urls.py       (API Routing & Endpoints)
+   - base/api/views.py      (API Business Logic)
+   - base/api/serializers.py (Data Serialization)
 
    FRONTEND TEMPLATES (base/templates/base/):
    - main.html              (Master Layout & Tailwind Config)
@@ -61,6 +69,13 @@ files and directories contained within this project structure:
    - profile.html           (User Settings & Bio)
    - certificate.html       (Award Generation & Social Sharing)
    - practical_lab.html     (Interactive Coding Environment)
+
+   MOBILE APPLICATION (mobile/):
+   - All source code under mobile/android/
+   - All source code under mobile/ios/
+   - All JavaScript/TypeScript source files (*.js, *.jsx, *.ts, *.tsx)
+   - Configuration files (app.json, package.json, etc.)
+   - Build scripts located in mobile/scripts/
 
    ASSETS & MIGRATIONS:
    - All migration files located in base/migrations/

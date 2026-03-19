@@ -21,6 +21,8 @@ platform :ios, podfile_properties['ios.deploymentTarget'] || '15.1'
 prepare_react_native_project!
 
 target 'StudyBuddyMobile' do
+  use_expo_modules!
+
   if ENV['EXPO_USE_COMMUNITY_AUTOLINKING'] == '1'
     config_command = ['node', '-e', "process.argv=['', '', 'config'];require('@react-native-community/cli').run()"];
   else
@@ -37,16 +39,7 @@ target 'StudyBuddyMobile' do
     ]
   end
 
-  # Invoke native autolinking first so that local React pods (e.g. React-RCTFabric)
-  # are registered before Expo pods that depend on them.
-  config = use_native_modules!
-
-  # Ensure React-RCTFabric (local RN pod) is available for Expo which depends on it.
-  pod 'React-RCTFabric', :path => '../node_modules/react-native/React', :modular_headers => true
-  # Local stub for ReactAppDependencyProvider (some Expo templates expect this pod)
-  pod 'ReactAppDependencyProvider', :path => './ReactAppDependencyProvider'
-
-  use_expo_modules!
+  config = use_native_modules!(config_command)
 
   use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
   use_frameworks! :linkage => ENV['USE_FRAMEWORKS'].to_sym if ENV['USE_FRAMEWORKS']
